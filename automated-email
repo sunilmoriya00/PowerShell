@@ -1,17 +1,15 @@
-$ms = Invoke-WebRequest -Uri https://www.catalog.update.microsoft.com/Search.aspx?q=azure%20information
-$patch =  $ms.Links | Select innertext | Where-Object innerText -match "Microsoft Azure Information Protection Client*" | Out-String
-$patch1 = $patch.replace("innerText", "Currently available wsus patches")
+
 $note = "Note: This is an automated email using PowerShell.
 
 $o = New-Object -com Outlook.Application
  
 $mail = $o.CreateItem(0)
 
-$mail.subject = "Available AIP WSUS patch on MS catalog site"
-$mail.body =  $patch1 + $note
+$mail.subject = "<add subject>"
+$mail.body =  $note
  
 #separate multiple recipients with a ";"
-$mail.To = "email-address"
+$mail.To = "email-addressess "
 #$mail.CC = "email-address"
 $mail.Send()
  
